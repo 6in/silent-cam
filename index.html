@@ -21,13 +21,21 @@
 </head>
 <body>
     <h1></h1>
-    <video id="video" width="640" height="480" autoplay></video>
-    <canvas id="canvas" width="640" height="480"></canvas>
+
+    <div>
+        <video id="video" width="240" height="320" autoplay></video>
+    </div>
+    <div>
+        <input type="radio" id="photoMode" name="mode" value="photo" checked>静止画モード
+        <input type="radio" id="videoMode" name="mode" value="video">動画モード
+        <br>
+        <button id="captureButton" style="width:100px;height:30px">撮影</button>
+    </div>
+
+    <div>
+        <canvas id="canvas" width="240" height="320"></canvas>
+    </div>
     <br>
-    <input type="radio" id="photoMode" name="mode" value="photo" checked>静止画モード
-    <input type="radio" id="videoMode" name="mode" value="video">動画モード
-    <br>
-    <button id="captureButton">撮影</button>
     <script src="app.js"></script>
 </body>
 </html>
