@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            touch-action: none;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+    </style>
+    <title>カメラキャプチャープログラム</title>
+</head>
+<body>
+    <h1>カメラキャプチャープログラム</h1>
+    <video id="video" width="640" height="480" autoplay></video>
+    <canvas id="canvas" width="640" height="480"></canvas>
+    <br>
+    <input type="radio" id="photoMode" name="mode" value="photo" checked>静止画モード
+    <input type="radio" id="videoMode" name="mode" value="video">動画モード
+    <br>
+    <button id="captureButton">撮影</button>
+    <script src="app.js"></script>
+</body>
+</html>
