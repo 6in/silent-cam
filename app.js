@@ -5,9 +5,19 @@ const ctx = canvas.getContext('2d');
 const captureButton = document.getElementById('captureButton');
 const photoMode = document.getElementById('photoMode');
 const videoMode = document.getElementById('videoMode');
+const prepare = document.getElementById('prepare');
 
 let mediaRecorder;
 let chunks = [];
+
+async function playVideo() {
+  try {
+    await video.play();
+  } catch(err) {
+    console.log(err);
+  }
+}
+
 
 // リアカメラのストリームを取得
 async function getRearCameraStream() {
@@ -63,13 +73,17 @@ function toggleVideoCapture() {
 
 // メイン処理
 function main() {
-    getRearCameraStream()
+    prepare.addEventListener('click', () =>{
+        prepare.style.display = "None"
+        playVideo();
+
+        getRearCameraStream()
         .then(stream => {
             video.srcObject = stream;
-            video.play();
             mediaRecorder = new MediaRecorder(stream);
         })
         .catch(err => console.error('An error occurred: ' + err));
+    })
 
     captureButton.addEventListener('click', () => {
         if (photoMode.checked) {
