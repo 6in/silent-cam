@@ -17,10 +17,14 @@ async function getRearCameraStream() {
 
     const constraints = {
         video: {
-            deviceId: rearCamera.deviceId,
-            facingMode: 'environment'
+            // deviceId: rearCamera.deviceId,
+            facingMode: {
+                exact: 'environment',
+            },
+            width: 1920,
+            height: 1080,
         },
-        audio: false
+        audio: true,
     };
 
     return await navigator.mediaDevices.getUserMedia(constraints);
@@ -62,6 +66,7 @@ function main() {
     getRearCameraStream()
         .then(stream => {
             video.srcObject = stream;
+            video.play();
             mediaRecorder = new MediaRecorder(stream);
         })
         .catch(err => console.error('An error occurred: ' + err));
