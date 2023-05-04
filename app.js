@@ -24,7 +24,7 @@ async function getRearCameraStream() {
             width: 1920,
             height: 1080,
         },
-        audio: true,
+        audio: false,
     };
 
     return await navigator.mediaDevices.getUserMedia(constraints);
