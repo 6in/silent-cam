@@ -41,6 +41,35 @@ export class CameraManager {
         } catch (error) {
             console.error('カメラアクセスエラー:', error);
 
+            // パーミッション拒否エラーの場合
+            if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
+                // 音声を含めている場合は、ビデオのみで再試行
+                if (includeAudio) {
+                    console.warn('音声パーミッションが拒否されました。ビデオのみで再試行します。');
+                    try {
+                        const videoOnlyConstraints = {
+                            video: {
+                                facingMode: {
+                                    exact: 'environment',
+                                },
+                                width: { ideal: 1920 },
+                                height: { ideal: 1080 },
+                            },
+                            audio: false,
+                        };
+                        this.stream = await navigator.mediaDevices.getUserMedia(videoOnlyConstraints);
+                        console.warn('ビデオのみで初期化されました（音声なし）');
+                        return this.stream;
+                    } catch (videoOnlyError) {
+                        // facingMode でも失敗した場合、さらにフォールバック
+                        console.error('environment facingMode でも失敗:', videoOnlyError);
+                    }
+                }
+
+                // パーミッション拒否の詳細なエラーメッセージ
+                throw new Error('カメラまたはマイクのアクセスが拒否されました。ブラウザの設定でパーミッションを許可してください。');
+            }
+
             // environment facingModeが失敗した場合、フォールバック
             try {
                 const fallbackConstraints = {
@@ -53,6 +82,25 @@ export class CameraManager {
                 this.stream = await navigator.mediaDevices.getUserMedia(fallbackConstraints);
                 return this.stream;
             } catch (fallbackError) {
+                // 音声を含めている場合は、最後にビデオのみで試行
+                if (includeAudio) {
+                    console.warn('音声を含むリクエストが失敗しました。ビデオのみで再試行します。');
+                    try {
+                        const videoOnlyFallback = {
+                            video: {
+                                width: { ideal: 1920 },
+                                height: { ideal: 1080 },
+                            },
+                            audio: false,
+                        };
+                        this.stream = await navigator.mediaDevices.getUserMedia(videoOnlyFallback);
+                        console.warn('ビデオのみで初期化されました（音声なし）');
+                        return this.stream;
+                    } catch (finalError) {
+                        throw new Error(`カメラの取得に失敗しました: ${finalError.message}`);
+                    }
+                }
+
                 throw new Error(`カメラの取得に失敗しました: ${fallbackError.message}`);
             }
         }
