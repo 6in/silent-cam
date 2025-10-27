@@ -2,50 +2,44 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            touch-action: none;
-        }
-
-        body {
-            width: 100vw;
-            height: 100vh;
-            overflow: hidden;
-            margin: 0px;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="カメラキャプチャープログラム - 写真撮影と動画録画（音声付き）に対応">
     <title>カメラキャプチャープログラム</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1></h1>
+    <h1>カメラキャプチャー</h1>
 
-    <div>
-        <video id="video" width="540" height="860" ></video>
+    <!-- ビデオプレビュー -->
+    <div class="video-container">
+        <video id="video" playsinline autoplay muted></video>
     </div>
-    <div>
-        <button id="prepare" style="width: 300px;height: 100px; font-size: 40px;">最初にクリック</button>
-        <br>
-        <br>
-        <div id="buttons" style="visibility: false">
-            <input type="radio" id="photoMode" name="mode" value="photo" checked style="margin-left: 50px"">静止画モード
-            <br>
-            <br>
-            <input type="radio" id="videoMode" name="mode" value="video" style="margin-left: 50px">動画モード
-            <br>
-            <br>
-            <br>
-            <button id="captureButton" style="width:300px;height:100px; font-size: 50px;">撮影</button>
+
+    <!-- カメラ初期化ボタン -->
+    <button id="prepare">最初にクリック</button>
+
+    <!-- コントロールパネル（初期状態は非表示） -->
+    <div class="controls hidden">
+        <!-- モード選択 -->
+        <div class="mode-selection">
+            <div class="mode-option">
+                <input type="radio" id="photoMode" name="mode" value="photo" checked>
+                <label for="photoMode">静止画モード</label>
+            </div>
+            <div class="mode-option">
+                <input type="radio" id="videoMode" name="mode" value="video">
+                <label for="videoMode">動画モード（音声付き）</label>
+            </div>
         </div>
 
+        <!-- キャプチャボタン -->
+        <button id="captureButton">撮影</button>
     </div>
 
-    <div>
-        <canvas id="canvas" width="1080" height="1920" hidden="true"></canvas>
-    </div>
-    <br>
-    <script src="app.js"></script>
+    <!-- 非表示のキャンバス（画像処理用） -->
+    <canvas id="canvas" width="1080" height="1920"></canvas>
+
+    <!-- JavaScriptモジュール -->
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>

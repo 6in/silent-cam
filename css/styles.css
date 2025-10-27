@@ -1,0 +1,248 @@
+/* リセットスタイル */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* ヘッダー */
+h1 {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* ビデオコンテナ */
+.video-container {
+    width: 100%;
+    max-width: 540px;
+    aspect-ratio: 540 / 860;
+    background-color: #000;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+#video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* コントロールパネル */
+.controls {
+    width: 100%;
+    max-width: 540px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+/* ボタンスタイル */
+button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 2rem;
+    width: 100%;
+    max-width: 300px;
+    touch-action: manipulation;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#prepare {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+#captureButton {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+#captureButton.recording {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* モード選択 */
+.mode-selection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    max-width: 300px;
+    padding: 1rem;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+}
+
+.mode-option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.mode-option:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mode-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.mode-option label {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* 非表示要素 */
+.hidden {
+    display: none !important;
+}
+
+#canvas {
+    display: none;
+}
+
+/* タブレット向け */
+@media (min-width: 768px) {
+    body {
+        padding: 2rem;
+    }
+
+    .video-container {
+        max-width: 600px;
+    }
+
+    .controls {
+        max-width: 600px;
+    }
+
+    button {
+        max-width: 350px;
+    }
+
+    .mode-selection {
+        max-width: 350px;
+    }
+}
+
+/* デスクトップ向け */
+@media (min-width: 1024px) {
+    body {
+        padding: 3rem;
+    }
+
+    .video-container {
+        max-width: 720px;
+    }
+
+    .controls {
+        max-width: 720px;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    button {
+        max-width: 300px;
+    }
+
+    .mode-selection {
+        max-width: 100%;
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+
+/* ランドスケープモード（横向き）*/
+@media (orientation: landscape) and (max-height: 600px) {
+    body {
+        flex-direction: row;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .video-container {
+        max-width: 50%;
+        margin-bottom: 0;
+    }
+
+    .controls {
+        max-width: 45%;
+    }
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: light) {
+    body {
+        background-color: #f5f5f5;
+        color: #333333;
+    }
+
+    .mode-selection {
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    .mode-option:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* アクセシビリティ: フォーカススタイル */
+button:focus-visible,
+input[type="radio"]:focus-visible {
+    outline: 3px solid #4facfe;
+    outline-offset: 2px;
+}
+
+/* アニメーション */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.controls {
+    animation: fadeIn 0.5s ease-out;
+}
