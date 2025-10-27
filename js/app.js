@@ -1,6 +1,7 @@
 import { CameraManager } from './components/CameraManager.js';
 import { PhotoCapture } from './components/PhotoCapture.js';
 import { VideoRecorder } from './components/VideoRecorder.js';
+import { VideoList } from './components/VideoList.js';
 
 /**
  * メインアプリケーションクラス
@@ -14,12 +15,15 @@ class SilentCamApp {
         this.captureButton = document.getElementById('captureButton');
         this.photoModeRadio = document.getElementById('photoMode');
         this.videoModeRadio = document.getElementById('videoMode');
-        this.controlsDiv = document.querySelector('.controls');
+        this.initialScreen = document.getElementById('initialScreen');
+        this.mainContainer = document.getElementById('mainContainer');
+        this.videoListElement = document.getElementById('videoList');
 
         // コンポーネントの初期化
         this.cameraManager = new CameraManager(this.videoElement);
         this.photoCapture = new PhotoCapture(this.videoElement, this.canvasElement);
         this.videoRecorder = new VideoRecorder(null);
+        this.videoList = new VideoList(this.videoListElement);
 
         // 状態管理
         this.isCameraReady = false;
@@ -27,6 +31,17 @@ class SilentCamApp {
 
         // イベントリスナーの設定
         this.setupEventListeners();
+
+        // 動画リストの初期化
+        this.initializeVideoList();
+    }
+
+    /**
+     * 動画リストを初期化
+     */
+    async initializeVideoList() {
+        await this.videoList.loadVideos('data/videos.json');
+        this.videoList.render();
     }
 
     /**
@@ -64,10 +79,10 @@ class SilentCamApp {
             // VideoRecorderを初期化
             this.videoRecorder.initialize(stream);
 
-            // UI更新
+            // UI更新：初期画面を非表示、メインコンテナを表示
             this.isCameraReady = true;
-            this.prepareButton.style.display = 'none';
-            this.controlsDiv.classList.remove('hidden');
+            this.initialScreen.classList.add('hidden');
+            this.mainContainer.classList.remove('hidden');
 
             console.log('カメラの初期化が完了しました');
             console.log(`音声トラック: ${this.cameraManager.hasAudioTrack() ? '有効' : '無効'}`);

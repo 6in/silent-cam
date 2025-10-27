@@ -8,32 +8,45 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>カメラキャプチャー</h1>
-
-    <!-- ビデオプレビュー -->
-    <div class="video-container">
-        <video id="video" playsinline autoplay muted></video>
+    <!-- カメラ初期化ボタン（初期表示） -->
+    <div id="initialScreen" class="initial-screen">
+        <button id="prepare">最初にクリック</button>
     </div>
 
-    <!-- カメラ初期化ボタン -->
-    <button id="prepare">最初にクリック</button>
-
-    <!-- コントロールパネル（初期状態は非表示） -->
-    <div class="controls hidden">
-        <!-- モード選択 -->
-        <div class="mode-selection">
-            <div class="mode-option">
-                <input type="radio" id="photoMode" name="mode" value="photo" checked>
-                <label for="photoMode">静止画モード</label>
+    <!-- メインコンテナ（初期状態は非表示） -->
+    <div id="mainContainer" class="main-container hidden">
+        <!-- 上部: カメラプレビューエリア -->
+        <div class="camera-section">
+            <div class="video-container">
+                <video id="video" playsinline autoplay muted></video>
             </div>
-            <div class="mode-option">
-                <input type="radio" id="videoMode" name="mode" value="video">
-                <label for="videoMode">動画モード（音声付き）</label>
+
+            <!-- カメラコントロール -->
+            <div class="camera-controls">
+                <!-- モード選択 -->
+                <div class="mode-selection">
+                    <div class="mode-option">
+                        <input type="radio" id="photoMode" name="mode" value="photo" checked>
+                        <label for="photoMode">📷 静止画</label>
+                    </div>
+                    <div class="mode-option">
+                        <input type="radio" id="videoMode" name="mode" value="video">
+                        <label for="videoMode">🎥 動画</label>
+                    </div>
+                </div>
+
+                <!-- キャプチャボタン -->
+                <button id="captureButton">撮影</button>
             </div>
         </div>
 
-        <!-- キャプチャボタン -->
-        <button id="captureButton">撮影</button>
+        <!-- 下部: 動画リストエリア -->
+        <div class="video-list-section">
+            <h2 class="list-title">おすすめ動画</h2>
+            <div id="videoList" class="video-list">
+                <!-- 動画リストがここに動的に挿入されます -->
+            </div>
+        </div>
     </div>
 
     <!-- 非表示のキャンバス（画像処理用） -->
