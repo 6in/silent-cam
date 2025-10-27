@@ -116,6 +116,11 @@ class SilentCamApp {
             console.log(`カメラの初期化が完了しました (${mode}モード)`);
             console.log(`音声トラック: ${this.cameraManager.hasAudioTrack() ? '有効' : '無効'}`);
             console.log(`ビデオトラック: ${this.cameraManager.hasVideoTrack() ? '有効' : '無効'}`);
+
+            // 動画モードで音声トラックがない場合、ユーザーに通知
+            if (mode === 'video' && !this.cameraManager.hasAudioTrack()) {
+                alert('音声のパーミッションが取得できませんでした。\nビデオのみで初期化されています（音声なし）。\n\n音声を使用する場合は、ブラウザの設定でマイクのアクセスを許可してください。');
+            }
         } catch (error) {
             console.error('カメラ初期化エラー:', error);
             alert(`カメラの初期化に失敗しました: ${error.message}`);
