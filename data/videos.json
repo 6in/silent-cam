@@ -3,56 +3,56 @@
     {
       "id": 1,
       "title": "カメラで撮影した風景動画 - 美しい夕焼けのシーン",
-      "thumbnail": "https://source.unsplash.com/120x90/?landscape,sunset",
+      "thumbnail": "images/thumbnails/image-1.png",
       "duration": "5:23",
       "views": "1.2万回視聴"
     },
     {
       "id": 2,
       "title": "街並みを歩く - 東京の日常風景",
-      "thumbnail": "https://source.unsplash.com/120x90/?landscape,cityscape",
+      "thumbnail": "images/thumbnails/image-2.png",
       "duration": "8:45",
       "views": "3.5万回視聴"
     },
     {
       "id": 3,
       "title": "料理の作り方 - 簡単レシピ紹介",
-      "thumbnail": "https://source.unsplash.com/120x90/?cooking,recipe",
+      "thumbnail": "images/thumbnails/image-3.png",
       "duration": "12:30",
       "views": "5.8万回視聴"
     },
     {
       "id": 4,
       "title": "ペットの可愛い瞬間集 - 癒やし動画",
-      "thumbnail": "https://source.unsplash.com/120x90/?pet,cute",
+      "thumbnail": "images/thumbnails/image-4.png",
       "duration": "3:15",
       "views": "10万回視聴"
     },
     {
       "id": 5,
       "title": "旅行Vlog - 京都観光の思い出",
-      "thumbnail": "https://source.unsplash.com/120x90/?travel,kyoto",
+      "thumbnail": "images/thumbnails/image-5.png",
       "duration": "15:42",
       "views": "2.3万回視聴"
     },
     {
       "id": 6,
       "title": "音楽演奏 - ギターでカバー曲",
-      "thumbnail": "https://source.unsplash.com/120x90/?music,guitar",
+      "thumbnail": "images/thumbnails/image-6.png",
       "duration": "4:28",
       "views": "8.9万回視聴"
     },
     {
       "id": 7,
       "title": "DIYプロジェクト - 棚を作ってみた",
-      "thumbnail": "https://source.unsplash.com/120x90/?diy,shelf",
+      "thumbnail": "images/thumbnails/image-7.png",
       "duration": "10:05",
       "views": "4.2万回視聴"
     },
     {
       "id": 8,
       "title": "朝のルーティン - モーニングルーティン紹介",
-      "thumbnail": "https://source.unsplash.com/120x90/?morning,routine",
+      "thumbnail": "images/thumbnails/image-8.png",
       "duration": "6:50",
       "views": "6.7万回視聴"
     }
