@@ -8,126 +8,272 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
     width: 100vw;
-    min-height: 100vh;
-    overflow-x: hidden;
-    background-color: #1a1a1a;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #0f0f0f;
     color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 1rem;
 }
 
-/* ヘッダー */
-h1 {
-    font-size: clamp(1.5rem, 4vw, 2rem);
-    margin-bottom: 1rem;
-    text-align: center;
+/* 初期画面 */
+.initial-screen {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* メインコンテナ */
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0f0f0f;
+}
+
+/* カメラセクション（上半分） */
+.camera-section {
+    height: 50vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    position: relative;
 }
 
 /* ビデオコンテナ */
 .video-container {
+    flex: 1;
     width: 100%;
-    max-width: 540px;
-    aspect-ratio: 540 / 860;
-    background-color: #000;
-    border-radius: 8px;
+    position: relative;
     overflow: hidden;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background-color: #000;
 }
 
 #video {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
 }
 
-/* コントロールパネル */
-.controls {
-    width: 100%;
-    max-width: 540px;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-}
-
-/* ボタンスタイル */
-button {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem 2rem;
-    width: 100%;
-    max-width: 300px;
-    touch-action: manipulation;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
-}
-
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#prepare {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-#captureButton {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-#captureButton.recording {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-}
-
-/* モード選択 */
-.mode-selection {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    width: 100%;
-    max-width: 300px;
+/* YouTube風プレイヤーコントロール */
+.player-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
     padding: 1rem;
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
+    transition: opacity 0.3s ease;
 }
 
-.mode-option {
+.control-bar {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    font-size: clamp(1rem, 2.5vw, 1.125rem);
+    gap: 1rem;
+}
+
+/* コントロールボタン */
+.control-button {
+    background: transparent;
+    border: none;
+    color: white;
     cursor: pointer;
     padding: 0.5rem;
-    border-radius: 4px;
+    border-radius: 50%;
     transition: background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
 }
 
-.mode-option:hover {
+.control-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.mode-option input[type="radio"] {
-    width: 20px;
-    height: 20px;
+.control-button:active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.control-icon {
+    width: 32px;
+    height: 32px;
+}
+
+/* モード表示 */
+.mode-indicator {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: white;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+/* 録画中のアニメーション */
+.recording-indicator {
+    animation: recordingPulse 1.5s infinite;
+}
+
+@keyframes recordingPulse {
+    0%, 100% {
+        background-color: rgba(250, 112, 154, 0.3);
+    }
+    50% {
+        background-color: rgba(250, 112, 154, 0.6);
+    }
+}
+
+/* 動画リストセクション（下半分） */
+.video-list-section {
+    height: 50vh;
+    width: 100%;
+    overflow-y: auto;
+    background-color: #0f0f0f;
+    padding: 1rem;
+}
+
+.list-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    padding-left: 0.25rem;
+}
+
+/* 動画リスト */
+.video-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+/* 動画リストアイテム */
+.video-item {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
     cursor: pointer;
 }
 
-.mode-option label {
+.video-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* サムネイル */
+.video-thumbnail {
+    width: 120px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    position: relative;
+    background-color: #272727;
+}
+
+.video-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+/* 動画情報 */
+.video-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0.4rem;
+    min-width: 0;
+}
+
+.video-title {
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: #fff;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.video-meta {
+    font-size: 0.8rem;
+    color: #aaa;
+}
+
+/* 初期ボタンコンテナ */
+.initial-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.initial-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+/* 準備ボタン */
+.prepare-button {
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.5rem;
+    font-weight: bold;
     cursor: pointer;
-    user-select: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    padding: 2rem 3rem;
+    min-width: 280px;
+}
+
+.prepare-button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+.prepare-button:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.prepare-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.prepare-photo {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.prepare-video {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
 /* 非表示要素 */
@@ -139,110 +285,151 @@ button:active {
     display: none;
 }
 
+/* スクロールバーのスタイリング */
+.video-list-section::-webkit-scrollbar {
+    width: 8px;
+}
+
+.video-list-section::-webkit-scrollbar-track {
+    background: #0f0f0f;
+}
+
+.video-list-section::-webkit-scrollbar-thumb {
+    background: #3a3a3a;
+    border-radius: 4px;
+}
+
+.video-list-section::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* アクセシビリティ: フォーカススタイル */
+button:focus-visible {
+    outline: 3px solid #3ea6ff;
+    outline-offset: 2px;
+}
+
 /* タブレット向け */
 @media (min-width: 768px) {
-    body {
-        padding: 2rem;
+    .control-button {
+        width: 56px;
+        height: 56px;
     }
 
-    .video-container {
-        max-width: 600px;
+    .control-icon {
+        width: 36px;
+        height: 36px;
     }
 
-    .controls {
-        max-width: 600px;
+    .mode-indicator {
+        font-size: 1.05rem;
+        padding: 0.6rem 1.2rem;
     }
 
-    button {
-        max-width: 350px;
+    .list-title {
+        font-size: 1.5rem;
     }
 
-    .mode-selection {
-        max-width: 350px;
+    .video-thumbnail {
+        width: 160px;
+        height: 120px;
+    }
+
+    .video-title {
+        font-size: 1.05rem;
+    }
+
+    .video-meta {
+        font-size: 0.85rem;
     }
 }
 
 /* デスクトップ向け */
 @media (min-width: 1024px) {
-    body {
-        padding: 3rem;
+    .main-container {
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    .video-container {
-        max-width: 720px;
+    .camera-section {
+        height: 55vh;
     }
 
-    .controls {
-        max-width: 720px;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+    .video-list-section {
+        height: 45vh;
+        padding: 1.5rem 2rem;
     }
 
-    button {
-        max-width: 300px;
-    }
-
-    .mode-selection {
-        max-width: 100%;
-        flex-direction: row;
-        justify-content: center;
-    }
-}
-
-/* ランドスケープモード（横向き）*/
-@media (orientation: landscape) and (max-height: 600px) {
-    body {
-        flex-direction: row;
+    .video-list {
         gap: 1rem;
-        padding: 1rem;
     }
 
-    .video-container {
-        max-width: 50%;
-        margin-bottom: 0;
+    .video-item {
+        padding: 0.75rem;
     }
 
-    .controls {
-        max-width: 45%;
-    }
-}
-
-/* ダークモード対応 */
-@media (prefers-color-scheme: light) {
-    body {
-        background-color: #f5f5f5;
-        color: #333333;
+    .video-thumbnail {
+        width: 180px;
+        height: 135px;
     }
 
-    .mode-selection {
-        background-color: rgba(0, 0, 0, 0.05);
-    }
-
-    .mode-option:hover {
-        background-color: rgba(0, 0, 0, 0.1);
+    .video-title {
+        font-size: 1.1rem;
     }
 }
 
-/* アクセシビリティ: フォーカススタイル */
-button:focus-visible,
-input[type="radio"]:focus-visible {
-    outline: 3px solid #4facfe;
-    outline-offset: 2px;
-}
-
-/* アニメーション */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
+/* ランドスケープモード対応 */
+@media (orientation: landscape) and (max-height: 600px) {
+    .camera-section {
+        height: 60vh;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-.controls {
-    animation: fadeIn 0.5s ease-out;
+    .video-list-section {
+        height: 40vh;
+    }
+
+    .player-controls {
+        padding: 0.5rem;
+    }
+
+    .control-button {
+        width: 40px;
+        height: 40px;
+    }
+
+    .control-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .mode-indicator {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .list-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .video-list {
+        gap: 0.5rem;
+    }
+
+    .video-item {
+        padding: 0.4rem;
+    }
+
+    .video-thumbnail {
+        width: 100px;
+        height: 75px;
+    }
+
+    .video-title {
+        font-size: 0.9rem;
+    }
+
+    .video-meta {
+        font-size: 0.75rem;
+    }
 }

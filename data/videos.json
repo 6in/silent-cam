@@ -1,0 +1,60 @@
+{
+  "videos": [
+    {
+      "id": 1,
+      "title": "カメラで撮影した風景動画 - 美しい夕焼けのシーン",
+      "thumbnail": "https://picsum.photos/seed/1/120/90",
+      "duration": "5:23",
+      "views": "1.2万回視聴"
+    },
+    {
+      "id": 2,
+      "title": "街並みを歩く - 東京の日常風景",
+      "thumbnail": "https://picsum.photos/seed/2/120/90",
+      "duration": "8:45",
+      "views": "3.5万回視聴"
+    },
+    {
+      "id": 3,
+      "title": "料理の作り方 - 簡単レシピ紹介",
+      "thumbnail": "https://picsum.photos/seed/3/120/90",
+      "duration": "12:30",
+      "views": "5.8万回視聴"
+    },
+    {
+      "id": 4,
+      "title": "ペットの可愛い瞬間集 - 癒やし動画",
+      "thumbnail": "https://picsum.photos/seed/4/120/90",
+      "duration": "3:15",
+      "views": "10万回視聴"
+    },
+    {
+      "id": 5,
+      "title": "旅行Vlog - 京都観光の思い出",
+      "thumbnail": "https://picsum.photos/seed/5/120/90",
+      "duration": "15:42",
+      "views": "2.3万回視聴"
+    },
+    {
+      "id": 6,
+      "title": "音楽演奏 - ギターでカバー曲",
+      "thumbnail": "https://picsum.photos/seed/6/120/90",
+      "duration": "4:28",
+      "views": "8.9万回視聴"
+    },
+    {
+      "id": 7,
+      "title": "DIYプロジェクト - 棚を作ってみた",
+      "thumbnail": "https://picsum.photos/seed/7/120/90",
+      "duration": "10:05",
+      "views": "4.2万回視聴"
+    },
+    {
+      "id": 8,
+      "title": "朝のルーティン - モーニングルーティン紹介",
+      "thumbnail": "https://picsum.photos/seed/8/120/90",
+      "duration": "6:50",
+      "views": "6.7万回視聴"
+    }
+  ]
+}
