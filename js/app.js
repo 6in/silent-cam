@@ -171,7 +171,7 @@ class SilentCamApp {
             // UIを更新: 停止アイコンを表示
             this.playIcon.classList.add('hidden');
             this.pauseIcon.classList.remove('hidden');
-            this.modeIndicator.textContent = '🔴 録画中...';
+            this.modeIndicator.textContent = '🔴 Live中';
             this.modeIndicator.classList.add('recording-indicator');
 
             console.log('録画を開始しました');
