@@ -21,6 +21,23 @@ class SilentCamApp {
         this.mainContainer = document.getElementById('mainContainer');
         this.videoListElement = document.getElementById('videoList');
 
+        // 必須要素の存在確認
+        const requiredElements = {
+            video: this.videoElement,
+            canvas: this.canvasElement,
+            preparePhoto: this.preparePhotoButton,
+            prepareVideo: this.prepareVideoButton,
+            playPauseButton: this.playPauseButton,
+            initialScreen: this.initialScreen,
+            mainContainer: this.mainContainer
+        };
+
+        for (const [name, element] of Object.entries(requiredElements)) {
+            if (!element) {
+                throw new Error(`必須要素が見つかりません: ${name}`);
+            }
+        }
+
         // コンポーネントの初期化
         this.cameraManager = new CameraManager(this.videoElement);
         this.photoCapture = new PhotoCapture(this.videoElement, this.canvasElement);
@@ -201,12 +218,22 @@ class SilentCamApp {
 }
 
 // アプリケーション起動
-// type="module"のスクリプトはDOMの読み込み後に実行されるため、直接実行可能
-const app = new SilentCamApp();
+// DOMが完全に読み込まれていることを確認してから初期化
+if (document.readyState === 'loading') {
+    // まだ読み込み中の場合は、DOMContentLoadedを待つ
+    document.addEventListener('DOMContentLoaded', initApp);
+} else {
+    // 既に読み込み完了している場合は、即座に初期化
+    initApp();
+}
 
-// ページアンロード時のクリーンアップ
-window.addEventListener('beforeunload', () => {
-    app.cleanup();
-});
+function initApp() {
+    const app = new SilentCamApp();
 
-console.log('SilentCam アプリケーションが起動しました');
+    // ページアンロード時のクリーンアップ
+    window.addEventListener('beforeunload', () => {
+        app.cleanup();
+    });
+
+    console.log('SilentCam アプリケーションが起動しました');
+}
