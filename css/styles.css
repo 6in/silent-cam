@@ -234,9 +234,23 @@ body {
     color: #aaa;
 }
 
+/* 初期ボタンコンテナ */
+.initial-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.initial-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
 /* 準備ボタン */
-#prepare {
-    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+.prepare-button {
     color: white;
     border: none;
     border-radius: 12px;
@@ -246,16 +260,31 @@ body {
     transition: all 0.3s ease;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
     padding: 2rem 3rem;
+    min-width: 280px;
 }
 
-#prepare:hover {
+.prepare-button:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
 }
 
-#prepare:active {
+.prepare-button:active {
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.prepare-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+.prepare-photo {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.prepare-video {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
 }
 
 /* 非表示要素 */

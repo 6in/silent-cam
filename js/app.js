@@ -11,7 +11,8 @@ class SilentCamApp {
         // DOM要素の取得
         this.videoElement = document.getElementById('video');
         this.canvasElement = document.getElementById('canvas');
-        this.prepareButton = document.getElementById('prepare');
+        this.preparePhotoButton = document.getElementById('preparePhoto');
+        this.prepareVideoButton = document.getElementById('prepareVideo');
         this.captureButton = document.getElementById('captureButton');
         this.photoModeRadio = document.getElementById('photoMode');
         this.videoModeRadio = document.getElementById('videoMode');
@@ -48,8 +49,11 @@ class SilentCamApp {
      * イベントリスナーを設定
      */
     setupEventListeners() {
-        // カメラ初期化ボタン
-        this.prepareButton.addEventListener('click', () => this.initializeCamera());
+        // 静止画モード初期化ボタン
+        this.preparePhotoButton.addEventListener('click', () => this.initializeCamera('photo'));
+
+        // 動画モード初期化ボタン
+        this.prepareVideoButton.addEventListener('click', () => this.initializeCamera('video'));
 
         // キャプチャボタン
         this.captureButton.addEventListener('click', () => this.handleCapture());
@@ -61,14 +65,21 @@ class SilentCamApp {
 
     /**
      * カメラを初期化
+     * @param {string} mode - 'photo' または 'video'
      */
-    async initializeCamera() {
+    async initializeCamera(mode) {
         try {
-            this.prepareButton.disabled = true;
-            this.prepareButton.textContent = '初期化中...';
+            // ボタンを無効化
+            this.preparePhotoButton.disabled = true;
+            this.prepareVideoButton.disabled = true;
+            this.preparePhotoButton.textContent = '初期化中...';
+            this.prepareVideoButton.textContent = '初期化中...';
+
+            // モードを設定
+            this.currentMode = mode;
 
             // 動画モードの場合は音声も含める
-            const includeAudio = this.videoModeRadio.checked;
+            const includeAudio = mode === 'video';
 
             // カメラストリームを取得
             const stream = await this.cameraManager.getRearCameraStream(includeAudio);
@@ -79,19 +90,28 @@ class SilentCamApp {
             // VideoRecorderを初期化
             this.videoRecorder.initialize(stream);
 
+            // モードに応じてラジオボタンを選択
+            if (mode === 'photo') {
+                this.photoModeRadio.checked = true;
+            } else {
+                this.videoModeRadio.checked = true;
+            }
+
             // UI更新：初期画面を非表示、メインコンテナを表示
             this.isCameraReady = true;
             this.initialScreen.classList.add('hidden');
             this.mainContainer.classList.remove('hidden');
 
-            console.log('カメラの初期化が完了しました');
+            console.log(`カメラの初期化が完了しました (${mode}モード)`);
             console.log(`音声トラック: ${this.cameraManager.hasAudioTrack() ? '有効' : '無効'}`);
             console.log(`ビデオトラック: ${this.cameraManager.hasVideoTrack() ? '有効' : '無効'}`);
         } catch (error) {
             console.error('カメラ初期化エラー:', error);
             alert(`カメラの初期化に失敗しました: ${error.message}`);
-            this.prepareButton.disabled = false;
-            this.prepareButton.textContent = '最初にクリック';
+            this.preparePhotoButton.disabled = false;
+            this.prepareVideoButton.disabled = false;
+            this.preparePhotoButton.textContent = '📷 静止画モード';
+            this.prepareVideoButton.textContent = '🎥 動画モード';
         }
     }
 
