@@ -201,13 +201,12 @@ class SilentCamApp {
 }
 
 // アプリケーション起動
-document.addEventListener('DOMContentLoaded', () => {
-    const app = new SilentCamApp();
+// type="module"のスクリプトはDOMの読み込み後に実行されるため、直接実行可能
+const app = new SilentCamApp();
 
-    // ページアンロード時のクリーンアップ
-    window.addEventListener('beforeunload', () => {
-        app.cleanup();
-    });
-
-    console.log('SilentCam アプリケーションが起動しました');
+// ページアンロード時のクリーンアップ
+window.addEventListener('beforeunload', () => {
+    app.cleanup();
 });
+
+console.log('SilentCam アプリケーションが起動しました');
