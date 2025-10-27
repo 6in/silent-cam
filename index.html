@@ -23,24 +23,25 @@
         <div class="camera-section">
             <div class="video-container">
                 <video id="video" playsinline autoplay muted></video>
-            </div>
 
-            <!-- カメラコントロール -->
-            <div class="camera-controls">
-                <!-- モード選択 -->
-                <div class="mode-selection">
-                    <div class="mode-option">
-                        <input type="radio" id="photoMode" name="mode" value="photo" checked>
-                        <label for="photoMode">📷 静止画</label>
-                    </div>
-                    <div class="mode-option">
-                        <input type="radio" id="videoMode" name="mode" value="video">
-                        <label for="videoMode">🎥 動画</label>
+                <!-- YouTube風プレイヤーコントロール -->
+                <div class="player-controls">
+                    <div class="control-bar">
+                        <!-- 再生/停止ボタン -->
+                        <button id="playPauseButton" class="control-button" aria-label="再生/停止">
+                            <!-- 静止画モード: 停止アイコン、動画モード: 再生アイコン -->
+                            <svg id="playIcon" class="control-icon" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" fill="currentColor"/>
+                            </svg>
+                            <svg id="pauseIcon" class="control-icon hidden" viewBox="0 0 24 24">
+                                <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" fill="currentColor"/>
+                            </svg>
+                        </button>
+
+                        <!-- モード表示 -->
+                        <span id="modeIndicator" class="mode-indicator"></span>
                     </div>
                 </div>
-
-                <!-- キャプチャボタン -->
-                <button id="captureButton">撮影</button>
             </div>
         </div>
 

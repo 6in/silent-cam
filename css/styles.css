@@ -59,85 +59,74 @@ body {
     object-position: center;
 }
 
-/* カメラコントロール */
-.camera-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-    background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(10px);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* YouTube風プレイヤーコントロール */
+.player-controls {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
+    padding: 1rem;
+    transition: opacity 0.3s ease;
 }
 
-/* モード選択 */
-.mode-selection {
+.control-bar {
     display: flex;
+    align-items: center;
     gap: 1rem;
 }
 
-.mode-option {
+/* コントロールボタン */
+.control-button {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
     display: flex;
     align-items: center;
-    gap: 0.4rem;
-    font-size: 0.9rem;
-    cursor: pointer;
-    padding: 0.4rem 0.6rem;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
 }
 
-.mode-option:hover {
+.control-button:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.mode-option input[type="radio"] {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    accent-color: #3ea6ff;
+.control-button:active {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
-.mode-option label {
-    cursor: pointer;
-    user-select: none;
-    white-space: nowrap;
+.control-icon {
+    width: 32px;
+    height: 32px;
 }
 
-/* キャプチャボタン */
-#captureButton {
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
-    border: none;
-    border-radius: 20px;
+/* モード表示 */
+.mode-indicator {
     font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    padding: 0.6rem 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    color: white;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
 }
 
-#captureButton:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+/* 録画中のアニメーション */
+.recording-indicator {
+    animation: recordingPulse 1.5s infinite;
 }
 
-#captureButton:active {
-    transform: translateY(0);
-}
-
-#captureButton.recording {
-    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-    animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
+@keyframes recordingPulse {
     0%, 100% {
-        opacity: 1;
+        background-color: rgba(250, 112, 154, 0.3);
     }
     50% {
-        opacity: 0.8;
+        background-color: rgba(250, 112, 154, 0.6);
     }
 }
 
@@ -315,26 +304,26 @@ body {
 }
 
 /* アクセシビリティ: フォーカススタイル */
-button:focus-visible,
-input[type="radio"]:focus-visible {
+button:focus-visible {
     outline: 3px solid #3ea6ff;
     outline-offset: 2px;
 }
 
 /* タブレット向け */
 @media (min-width: 768px) {
-    .camera-controls {
-        padding: 1rem 1.5rem;
+    .control-button {
+        width: 56px;
+        height: 56px;
     }
 
-    .mode-option {
-        font-size: 1rem;
-        padding: 0.5rem 0.8rem;
+    .control-icon {
+        width: 36px;
+        height: 36px;
     }
 
-    #captureButton {
-        font-size: 1.1rem;
-        padding: 0.75rem 2rem;
+    .mode-indicator {
+        font-size: 1.05rem;
+        padding: 0.6rem 1.2rem;
     }
 
     .list-title {
@@ -399,17 +388,23 @@ input[type="radio"]:focus-visible {
         height: 40vh;
     }
 
-    .camera-controls {
-        padding: 0.5rem 1rem;
+    .player-controls {
+        padding: 0.5rem;
     }
 
-    #captureButton {
-        font-size: 0.85rem;
-        padding: 0.5rem 1.2rem;
+    .control-button {
+        width: 40px;
+        height: 40px;
     }
 
-    .mode-option {
+    .control-icon {
+        width: 28px;
+        height: 28px;
+    }
+
+    .mode-indicator {
         font-size: 0.85rem;
+        padding: 0.4rem 0.8rem;
     }
 
     .list-title {
