@@ -151,13 +151,13 @@ class SilentCamApp {
             // 静止画モード: 停止アイコンを表示
             this.playIcon.classList.add('hidden');
             this.pauseIcon.classList.remove('hidden');
-            this.modeIndicator.textContent = '📷 静止画モード';
+            this.modeIndicator.textContent = '📷';
             this.modeIndicator.classList.remove('recording-indicator');
         } else {
             // 動画モード: 再生アイコンを表示
             this.playIcon.classList.remove('hidden');
             this.pauseIcon.classList.add('hidden');
-            this.modeIndicator.textContent = '🎥 動画モード';
+            this.modeIndicator.textContent = '🎥';
             this.modeIndicator.classList.remove('recording-indicator');
         }
     }
@@ -205,7 +205,7 @@ class SilentCamApp {
             // UIを更新: 停止アイコンを表示
             this.playIcon.classList.add('hidden');
             this.pauseIcon.classList.remove('hidden');
-            this.modeIndicator.textContent = '🔴 Live中';
+            this.modeIndicator.textContent = '🔴';
             this.modeIndicator.classList.add('recording-indicator');
 
             console.log('録画を開始しました');
@@ -217,7 +217,7 @@ class SilentCamApp {
             // UIを更新: 再生アイコンを表示
             this.playIcon.classList.remove('hidden');
             this.pauseIcon.classList.add('hidden');
-            this.modeIndicator.textContent = '🎥 動画モード';
+            this.modeIndicator.textContent = '🎥';
             this.modeIndicator.classList.remove('recording-indicator');
 
             console.log('録画を停止しました');
