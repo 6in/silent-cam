@@ -113,8 +113,9 @@ export class TransitionEffectManager {
     /**
      * 指定されたエフェクトを適用
      * @param {string} effectName - エフェクト名（例: 'effect-fade'）
+     * @param {boolean} shouldScheduleNext - 次のエフェクトをスケジュールするか（デフォルト: true）
      */
-    applyEffect(effectName) {
+    applyEffect(effectName, shouldScheduleNext = true) {
         if (!this.effects.includes(effectName)) {
             console.warn(`不明なエフェクト: ${effectName}`);
             return;
@@ -134,8 +135,24 @@ export class TransitionEffectManager {
             this.videoContainer.classList.remove(effectName);
         }, duration);
 
-        // 次のエフェクトをスケジュール
-        this.scheduleNextEffect();
+        // 次のエフェクトをスケジュール（オプション）
+        if (shouldScheduleNext) {
+            this.scheduleNextEffect();
+        }
+    }
+
+    /**
+     * 手動でランダムなエフェクトをトリガー（自動スケジューリングなし）
+     * キャプチャ時などに使用
+     */
+    triggerRandomEffect() {
+        // ランダムにエフェクトを選択
+        const randomEffect = this.effects[Math.floor(Math.random() * this.effects.length)];
+
+        // エフェクトを適用（次のスケジューリングはしない）
+        this.applyEffect(randomEffect, false);
+
+        console.log(`手動トリガー: ${randomEffect}`);
     }
 
     /**
