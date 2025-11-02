@@ -625,30 +625,30 @@ button:focus-visible {
 }
 
 /* エフェクトクラス */
-.video-container.effect-fade {
+#video.effect-fade {
     animation: fadeTransition 1s ease-in-out;
 }
 
-.video-container.effect-slide-left {
+#video.effect-slide-left {
     animation: slideLeftTransition 1s ease-in-out;
 }
 
-.video-container.effect-slide-right {
+#video.effect-slide-right {
     animation: slideRightTransition 1s ease-in-out;
 }
 
-.video-container.effect-zoom-in {
+#video.effect-zoom-in {
     animation: zoomInTransition 1s ease-in-out;
 }
 
-.video-container.effect-zoom-out {
+#video.effect-zoom-out {
     animation: zoomOutTransition 1s ease-in-out;
 }
 
-.video-container.effect-rotate {
+#video.effect-rotate {
     animation: rotateTransition 1s ease-in-out;
 }
 
-.video-container.effect-glitch {
+#video.effect-glitch {
     animation: glitchTransition 1.2s ease-in-out;
 }
