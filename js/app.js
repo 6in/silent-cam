@@ -48,7 +48,7 @@ class SilentCamApp {
         this.videoRecorder = new VideoRecorder(null);
         this.videoList = new VideoList(this.videoListElement);
         this.subtitleManager = new SubtitleManager(this.subtitleElement);
-        this.transitionEffectManager = new TransitionEffectManager(this.videoContainer);
+        this.transitionEffectManager = new TransitionEffectManager(this.videoElement);
 
         // 状態管理
         this.isCameraReady = false;
