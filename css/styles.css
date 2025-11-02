@@ -626,29 +626,29 @@ button:focus-visible {
 
 /* エフェクトクラス */
 #video.effect-fade {
-    animation: fadeTransition 1s ease-in-out;
+    animation: fadeTransition 2s ease-in-out;
 }
 
 #video.effect-slide-left {
-    animation: slideLeftTransition 1s ease-in-out;
+    animation: slideLeftTransition 2s ease-in-out;
 }
 
 #video.effect-slide-right {
-    animation: slideRightTransition 1s ease-in-out;
+    animation: slideRightTransition 2s ease-in-out;
 }
 
 #video.effect-zoom-in {
-    animation: zoomInTransition 1s ease-in-out;
+    animation: zoomInTransition 2s ease-in-out;
 }
 
 #video.effect-zoom-out {
-    animation: zoomOutTransition 1s ease-in-out;
+    animation: zoomOutTransition 2s ease-in-out;
 }
 
 #video.effect-rotate {
-    animation: rotateTransition 1s ease-in-out;
+    animation: rotateTransition 2s ease-in-out;
 }
 
 #video.effect-glitch {
-    animation: glitchTransition 1.2s ease-in-out;
+    animation: glitchTransition 2.4s ease-in-out;
 }
