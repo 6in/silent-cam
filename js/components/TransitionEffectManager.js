@@ -28,13 +28,13 @@ export class TransitionEffectManager {
 
         // エフェクトの継続時間（ミリ秒）
         this.effectDurations = {
-            'effect-fade': 1000,
-            'effect-slide-left': 1000,
-            'effect-slide-right': 1000,
-            'effect-zoom-in': 1000,
-            'effect-zoom-out': 1000,
-            'effect-rotate': 1000,
-            'effect-glitch': 1200
+            'effect-fade': 2000,
+            'effect-slide-left': 2000,
+            'effect-slide-right': 2000,
+            'effect-zoom-in': 2000,
+            'effect-zoom-out': 2000,
+            'effect-rotate': 2000,
+            'effect-glitch': 2400
         };
 
         // ランダム間隔の範囲（ミリ秒）
