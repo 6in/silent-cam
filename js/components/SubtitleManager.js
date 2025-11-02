@@ -8,18 +8,18 @@ export class SubtitleManager {
         this.intervalId = null;
         this.isActive = false;
 
-        // カフェでスイーツをレビューしているセリフ
+        // Café sweets review subtitles (English)
         this.subtitles = [
-            'このケーキ、ふわふわで美味しい！',
-            '甘さ控えめで食べやすいですね',
-            'クリームがとっても滑らかです',
-            'このティラミスは絶品ですよ',
-            '抹茶の風味が濃厚で最高！',
-            'フルーツとの相性もばっちりです',
-            'このお店のパティシエさん、天才かも',
-            '見た目も可愛くてインスタ映えしますね',
-            'コーヒーとの相性が抜群です',
-            '何度でも食べたくなる味ですね'
+            'This cake is so fluffy and delicious!',
+            'It\'s not too sweet and easy to eat',
+            'The cream is so smooth',
+            'This tiramisu is exquisite',
+            'The matcha flavor is rich and amazing!',
+            'It pairs perfectly with the fruit',
+            'The pastry chef here might be a genius',
+            'It looks so cute and Instagram-worthy',
+            'It goes excellently with coffee',
+            'It\'s a taste you\'ll want to enjoy again and again'
         ];
     }
 
