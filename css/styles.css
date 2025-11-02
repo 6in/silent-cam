@@ -59,6 +59,32 @@ body {
     object-position: center;
 }
 
+/* 字幕表示 */
+.subtitle {
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 80%;
+    background-color: rgba(0, 0, 0, 0.85);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-align: center;
+    line-height: 1.5;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    z-index: 10;
+}
+
+.subtitle.visible {
+    opacity: 1;
+}
+
 /* YouTube風プレイヤーコントロール */
 .player-controls {
     position: absolute;
@@ -68,6 +94,7 @@ body {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.6) 70%, transparent 100%);
     padding: 1rem;
     transition: opacity 0.3s ease;
+    z-index: 20;
 }
 
 .control-bar {
@@ -386,6 +413,12 @@ button:focus-visible {
 
     .video-list-section {
         height: 40vh;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        bottom: 18%;
     }
 
     .player-controls {
