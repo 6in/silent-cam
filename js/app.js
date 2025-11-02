@@ -3,6 +3,7 @@ import { PhotoCapture } from './components/PhotoCapture.js';
 import { VideoRecorder } from './components/VideoRecorder.js';
 import { VideoList } from './components/VideoList.js';
 import { SubtitleManager } from './components/SubtitleManager.js';
+import { TransitionEffectManager } from './components/TransitionEffectManager.js';
 
 /**
  * メインアプリケーションクラス
@@ -22,6 +23,7 @@ class SilentCamApp {
         this.mainContainer = document.getElementById('mainContainer');
         this.videoListElement = document.getElementById('videoList');
         this.subtitleElement = document.getElementById('subtitle');
+        this.videoContainer = document.querySelector('.video-container');
 
         // 必須要素の存在確認
         const requiredElements = {
@@ -46,6 +48,7 @@ class SilentCamApp {
         this.videoRecorder = new VideoRecorder(null);
         this.videoList = new VideoList(this.videoListElement);
         this.subtitleManager = new SubtitleManager(this.subtitleElement);
+        this.transitionEffectManager = new TransitionEffectManager(this.videoContainer);
 
         // 状態管理
         this.isCameraReady = false;
@@ -118,6 +121,9 @@ class SilentCamApp {
 
             // 字幕表示を開始
             this.subtitleManager.start();
+
+            // トランジションエフェクトを開始
+            this.transitionEffectManager.start();
 
             console.log(`カメラの初期化が完了しました (${mode}モード)`);
             console.log(`音声トラック: ${this.cameraManager.hasAudioTrack() ? '有効' : '無効'}`);
@@ -226,6 +232,7 @@ class SilentCamApp {
         this.cameraManager.stopStream();
         this.videoRecorder.cleanup();
         this.subtitleManager.stop();
+        this.transitionEffectManager.stop();
     }
 }
 
