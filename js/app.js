@@ -189,6 +189,10 @@ class SilentCamApp {
      * 静止画をキャプチャ
      */
     capturePhoto() {
+        // ランダムエフェクトをトリガー
+        this.transitionEffectManager.triggerRandomEffect();
+
+        // 写真をキャプチャ
         this.photoCapture.capture();
         console.log('写真をキャプチャしました');
     }
@@ -198,6 +202,9 @@ class SilentCamApp {
      */
     toggleVideoRecording() {
         if (!this.isRecording) {
+            // ランダムエフェクトをトリガー
+            this.transitionEffectManager.triggerRandomEffect();
+
             // 録画開始
             this.videoRecorder.start();
             this.isRecording = true;
